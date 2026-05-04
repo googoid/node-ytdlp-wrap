@@ -53,6 +53,7 @@ https.get(downloadURL, (response) => {
 					path: ytdlpPath,
 					version: version
 				}), 'utf-8');
+				fs.chmodSync(ytdlpPath, 0o755);
 				console.log('YT-DLP Installed!');
 				fs.unlink(tempPath, (error) => {
 					if (error) {
