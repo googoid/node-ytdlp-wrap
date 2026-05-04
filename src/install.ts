@@ -1,8 +1,8 @@
+import { spawn } from 'child_process';
+import { https } from 'follow-redirects';
+import fs from 'fs';
 import os from 'os';
 import path from 'path';
-import { https } from 'follow-redirects';
-import { spawn } from 'child_process';
-import fs from 'fs';
 
 const platform = os.platform();
 console.log(`OS Platform: ${platform}`);
@@ -27,6 +27,9 @@ https.get(downloadURL, (response) => {
 	response.pipe(writer);
 	writer.on('close', () => {
 		console.log('Finished downloading yt-dlp');
+
+		console.log('Making yt-dlp executable...');
+		fs.chmodSync(tempPath, 0o755);
 
 		console.log('Getting version of yt-dlp');
 		const getVer = spawn(tempPath, [

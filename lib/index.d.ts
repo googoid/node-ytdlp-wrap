@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { PassThrough } from 'stream';
 export declare class YtdlpDownloader {
     private downloader_;
